@@ -4414,7 +4414,7 @@ let current_virtual_functions_rev clazz base_functions =
              if List.exists (fun (e,a,r) -> e.cf_name=elem.cf_name ) result then
                result
             else
-               (elem,args,return_type) :: result
+               List.map (fun (e,a,r) ->  if e.cf_name<>elem.cf_name then (e,a,r) else  (elem,args,return_type) ) result
           else
              (elem,args,return_type) :: result
       | _,_ -> result
